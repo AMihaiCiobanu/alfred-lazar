@@ -51,7 +51,7 @@
   <link rel="stylesheet" media="print" onload="this.media='all'"
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Space+Grotesk:wght@700&display=swap" />
 
-  <link rel="stylesheet" href="styles.css?v=2" />
+  <link rel="stylesheet" href="styles.css?v=3" />
 </head>
 
 <body>
@@ -279,14 +279,42 @@
         <div class="map">
           <h3>Pe hartă</h3>
           <div class="map-frame">
-            <!-- Replace with the Google Maps embed once the address is known. -->
-            <div class="map-placeholder">
-              <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.6"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                <circle cx="12" cy="10" r="3" />
+            <!-- Once the address is known: set data-map-src to the Google Maps embed URL
+                 (https://www.google.com/maps/embed?pb=...). The map loads only when the button is pressed. -->
+            <div class="map-consent" data-map-src="" data-map-title="Hartă Alfred Lazar">
+              <svg class="mp-art" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+              <rect width="800" height="500" class="mp-land"/>
+              <path d="M560 0 C520 120 640 220 600 320 S520 460 560 500 L620 500 C590 440 660 360 670 300 S590 120 640 0Z" class="mp-water"/>
+              <rect x="120" y="300" width="150" height="110" rx="18" class="mp-park"/>
+              <rect x="430" y="70" width="90" height="70" rx="14" class="mp-park"/>
+              <path d="M40 0 L10 500" class="mp-road mp-main"/>
+              <path d="M121 0 L103.6 500" class="mp-road"/>
+              <path d="M212 0 L201.8 500" class="mp-road mp-main"/>
+              <path d="M312 0 L314.6 500" class="mp-road"/>
+              <path d="M407 0 L426 500" class="mp-road"/>
+              <path d="M491 0 L503.5 500" class="mp-road"/>
+              <path d="M563 0 L574 500" class="mp-road"/>
+              <path d="M669 0 L687.4 500" class="mp-road"/>
+              <path d="M759 0 L784.4 500" class="mp-road"/>
+              <path d="M0 30 L800 33.9" class="mp-road mp-main"/>
+              <path d="M0 126 L800 119.6" class="mp-road"/>
+              <path d="M0 219 L800 210.6" class="mp-road"/>
+              <path d="M0 290 L800 286.4" class="mp-road"/>
+              <path d="M0 387 L800 389.9" class="mp-road mp-main"/>
+              <path d="M0 482 L800 459.9" class="mp-road"/>
+              <path d="M0 420 C200 380 300 300 400 250 S640 180 800 140" class="mp-road mp-avenue"/>
+              <path d="M150 470 C230 400 300 320 400 250" class="mp-route"/>
+              <g class="mp-pin" transform="translate(400 250)"><circle r="46" class="mp-pulse"/><path d="M0 0 C-22 -26 -26 -40 -26 -50 a26 26 0 0 1 52 0 C26 -40 22 -26 0 0Z" class="mp-drop"/><circle cy="-50" r="9" class="mp-hole"/></g>
               </svg>
-              <p>Aici apare harta până la cabinetul tău, după ce ne trimiți adresa.</p>
+              <div class="mp-overlay">
+                <button type="button" class="btn mp-load" data-map-load>
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4zM8 2v16M16 6v16" />
+                  </svg>
+                  Arată harta interactivă
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -311,6 +339,9 @@
       <p>© <span id="year">2026</span> Alfred Lazar</p>
       <p class="muted small">Programări online prin <a href="https://appointmentsapps.com/" target="_blank"
           rel="noopener">Appointments &amp; Reports</a></p>
+      <div class="client-legal" data-client-legal="alfred-lazar">
+        <p class="muted small"><a href="https://appointmentsapps.com/legal/client/?c=alfred-lazar">Politica de confidențialitate</a></p>
+      </div>
     </div>
     <div class="container">
       <p class="footer-madeby">
@@ -342,6 +373,16 @@
 
   <script src="lightbox.js?v=1" defer></script>
   <script type="module" src="app.js?v=2"></script>
+  <!-- Shared legal parts (footer company details, map on click) from appointmentsapps.com -->
+  <script>
+    (function () {
+      var o = /^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? 'http://localhost:8080' : 'https://appointmentsapps.com';
+      var s = document.createElement('script');
+      s.src = o + '/legal/client-legal.js?v=3';
+      s.defer = true;
+      document.head.appendChild(s);
+    })();
+  </script>
 </body>
 
 </html>
